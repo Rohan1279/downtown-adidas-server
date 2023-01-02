@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.jft02cx.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://dbUser1:CVr8dE5br07C3lIL@cluster0.jft02cx.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -26,7 +26,7 @@ async function run() {
     const servicesCollection = client
       .db("downtown-adidas-db")
       .collection("services");
-    // write
+    // create
     app.post("/services", async (req, res) => {
       const service = req.body;
       console.log(service);
