@@ -26,6 +26,9 @@ async function run() {
     const servicesCollection = client
       .db("downtown-adidas-db")
       .collection("services");
+    const upcomingProductCollection = client
+      .db("downtown-adidas-db")
+      .collection("upcoming-products");
     // create
     app.post("/services", async (req, res) => {
       const service = req.body;
@@ -39,6 +42,12 @@ async function run() {
       const cursor = servicesCollection.find(query);
       const services = await cursor.toArray();
       res.send(services);
+    });
+    app.get("/upcoming", async (req, res) => {
+      const query = {};
+      const cursor = upcomingProductCollection.find(query);
+      const upcoming = await cursor.toArray();
+      res.send(upcoming);
     });
     // delete
     app.delete("/services/:id", async (req, res) => {
